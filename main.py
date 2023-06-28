@@ -1,5 +1,5 @@
 import streamlit as st
-import plotly.graph_objects as go
+import plotly.express as px
 import scipy.stats as stats
 import numpy as np
 
@@ -26,11 +26,8 @@ with col2:
     # Crear gráfica
     x = np.linspace(40, 110, 100)
     y = stats.norm.pdf(x, media1, desviacion_estandar1)
-    fig1 = go.Figure()
-    fig1.add_trace(go.Scatter(x=x, y=y, mode='lines'))
-    fig1.update_layout(title="Distribución de Calificaciones", xaxis_title="Calificaciones", yaxis_title="Densidad")
+    fig1 = px.line(x=x, y=y, title="Distribución de Calificaciones", labels={'x': 'Calificaciones', 'y': 'Densidad'})
     st.plotly_chart(fig1)
-
     st.subheader(f"Probabilidad de sacar más de 85: {prob1:.2f}%")
 
 # Datos del ejemplo 2
@@ -47,12 +44,10 @@ with col1:
     z2 = (x2 - media2) / desviacion_estandar2
     prob2 = (1 - stats.norm.cdf(z2))*100
 with col2:
-# Crear gráfica
+    # Crear gráfica
     x = np.linspace(150, 190, 100)
     y = stats.norm.pdf(x, media2, desviacion_estandar2)
-    fig2 = go.Figure()
-    fig2.add_trace(go.Scatter(x=x, y=y, mode='lines'))
-    fig2.update_layout(title="Distribución de Alturas", xaxis_title="Alturas (cm)", yaxis_title="Densidad")
+    fig2 = px.line(x=x, y=y, title="Distribución de Alturas", labels={'x': 'Alturas (cm)', 'y': 'Densidad'})
     st.plotly_chart(fig2)
     st.subheader(f"Probabilidad de medir más de 180 cm: {prob2:.2f}%")
 
@@ -73,11 +68,10 @@ with col2:
     # Crear gráfica
     x = np.linspace(400, 600, 100)
     y = stats.norm.pdf(x, media3, desviacion_estandar3)
-    fig3 = go.Figure()
-    fig3.add_trace(go.Scatter(x=x, y=y, mode='lines'))
-    fig3.update_layout(title="Distribución de Pesos", xaxis_title="Pesos (g)", yaxis_title="Densidad")
+    fig3 = px.line(x=x, y=y, title="Distribución de Pesos", labels={'x': 'Pesos (g)', 'y': 'Densidad'})
     st.plotly_chart(fig3)
     st.subheader(f"Probabilidad de que un paquete pese más de 550 g: {prob3:.2f}%")
+
 
 # Teorema de Bayes
 st.header("Teorema de Bayes en la industria")
@@ -100,22 +94,11 @@ with col1:
     prob_posterior = (numerador / denominador)*100
     st.write(f"Probabilidad de que realmente sea defectuosa: {prob_posterior:.2f}%")
 with col2:
-    # Ejemplo 1 (dos eventos)
-    prob_defectuosa = 0.05
-    prob_prueba_correcta = 0.98
-    prob_falso_positivo = 0.03
-
-    # Teorema de Bayes
-    numerador = prob_prueba_correcta * prob_defectuosa
-    denominador = (prob_prueba_correcta * prob_defectuosa) + (prob_falso_positivo * (1 - prob_defectuosa))
-    prob_posterior = numerador / denominador
-
     # Crear gráfico para el Teorema de Bayes Ejemplo 1
-    fig4 = go.Figure()
-    fig4.add_bar(x=['Defectuoso y detectado', 'No defectuoso pero detectado'], y=[prob_posterior, 1-prob_posterior])
-    fig4.update_layout(title="Probabilidad de detección de elementos defectuosos",
-                    xaxis_title="Casos", yaxis_title="Probabilidad")
+    fig4 = px.bar(x=['Defectuoso y detectado', 'No defectuoso pero detectado'], y=[prob_posterior, 1-prob_posterior], title="Probabilidad de detección de elementos defectuosos", labels={'x': 'Casos', 'y': 'Probabilidad'})
     st.plotly_chart(fig4)
+
+col1, col2 = st.columns(2)
 
 col1, col2 = st.columns(2)
 with col1:
@@ -143,23 +126,6 @@ with col1:
     st.write(f"Probabilidad de tener enfermedad C: {prob_posterior_C:.2f}%")
 # Teorema de Bayes con gráficos
 with col2:
-    # Ejemplo 2 (tres eventos)
-    prob_A = 0.2
-    prob_B = 0.3
-    prob_C = 0.1
-    prob_pos_A = 0.9
-    prob_pos_B = 0.85
-    prob_pos_C = 0.95
-
-    # Teorema de Bayes para cada enfermedad
-    prob_total_pos = (prob_pos_A * prob_A) + (prob_pos_B * prob_B) + (prob_pos_C * prob_C)
-    prob_posterior_A = ((prob_pos_A * prob_A) / prob_total_pos)*100
-    prob_posterior_B = ((prob_pos_B * prob_B) / prob_total_pos)*100
-    prob_posterior_C = ((prob_pos_C * prob_C) / prob_total_pos)*100
-
     # Crear gráfico para el Teorema de Bayes Ejemplo 2
-    fig5 = go.Figure()
-    fig5.add_bar(x=['Enfermedad A', 'Enfermedad B', 'Enfermedad C'], y=[prob_posterior_A, prob_posterior_B, prob_posterior_C])
-    fig5.update_layout(title="Probabilidades posteriores de enfermedades",
-                    xaxis_title="Enfermedades", yaxis_title="Probabilidad Posterior")
+    fig5 = px.bar(x=['Enfermedad A', 'Enfermedad B', 'Enfermedad C'], y=[prob_posterior_A, prob_posterior_B, prob_posterior_C], title="Probabilidades posteriores de enfermedades", labels={'x': 'Enfermedades', 'y': 'Probabilidad Posterior'})
     st.plotly_chart(fig5)
