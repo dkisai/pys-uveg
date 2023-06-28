@@ -35,8 +35,8 @@ col1, col2 = st.columns(2)
 with col1:
     st.header("Ejemplo 2: Alturas de adultos")
     st.markdown("""
-    Supongamos que los pesos de los paquetes en una fábrica de envío siguen una distribución normal con una media de 2 kg y una desviación estándar de 0.1 kg.
-    **Pregunta**: ¿Cuál es la probabilidad de que un paquete seleccionado al azar pese menos de 1.9 kg?
+    Supongamos que la altura de los hombres en un país sigue una distribución normal con una media de 177 cm y una desviación estándar de 8 cm.
+    **Pregunta**: ¿Cuál es la probabilidad de que un hombre elegido al azar tenga una altura entre 165 cm y 190 cm?
     """)
     media2 = 170
     desviacion_estandar2 = 8
@@ -56,8 +56,8 @@ col1, col2 = st.columns(2)
 with col1:
     st.header("Ejemplo 3: Pesos de paquetes")
     st.markdown("""
-    Supongamos que la altura de los hombres en un país sigue una distribución normal con una media de 177 cm y una desviación estándar de 8 cm.
-    **Pregunta**: ¿Cuál es la probabilidad de que un hombre elegido al azar tenga una altura entre 165 cm y 190 cm?
+    Supongamos que los pesos de los paquetes en una fábrica de envío siguen una distribución normal con una media de 2 kg y una desviación estándar de 0.1 kg.
+    **Pregunta**: ¿Cuál es la probabilidad de que un paquete seleccionado al azar pese menos de 1.9 kg?
     """)
     media3 = 500
     desviacion_estandar3 = 50
@@ -106,7 +106,6 @@ with col1:
     st.subheader("Ejemplo 2: Diagnóstico de enfermedades en una clínica")
     st.markdown("""
     Supongamos que en una clínica se realizan pruebas para detectar tres tipos de enfermedades (A, B y C) en los pacientes. La probabilidad de que un paciente tenga la enfermedad A es del 0.2, la enfermedad B es del 0.3 y la enfermedad C es del 0.1. Además, la prueba detecta correctamente la enfermedad A en un 90% de los casos, la enfermedad B en un 85% de los casos, y la enfermedad C en un 95% de los casos.
-
     Pregunta: Si un paciente da positivo en la prueba, ¿cuál es la probabilidad de que tenga cada una de las enfermedades (A, B, o C)?
     """)
     prob_A = 0.2
@@ -129,3 +128,5 @@ with col2:
     # Crear gráfico para el Teorema de Bayes Ejemplo 2
     fig5 = px.bar(x=['Enfermedad A', 'Enfermedad B', 'Enfermedad C'], y=[prob_posterior_A, prob_posterior_B, prob_posterior_C], title="Probabilidades posteriores de enfermedades", labels={'x': 'Enfermedades', 'y': 'Probabilidad Posterior'})
     st.plotly_chart(fig5)
+
+st.success('Diego Kisai Alba Gallart')
